@@ -10,8 +10,7 @@ A real-time chat application built with FastAPI that supports JWT authentication
 - ✅ **WebSocket Chat**: Real-time chat support via WebSockets
 - ✅ **Persistent Message Storage**: Messages are stored in PostgreSQL and fetched using pagination
 - ✅ **Room-based Communication**: Chatrooms with isolated conversations
-- 🧠 **Optional Admin Dashboard & Analytics** (if Group B Task 2 chosen)
-
+  
 ## 🧱 Tech Stack
 
 | Component         | Technology         |
