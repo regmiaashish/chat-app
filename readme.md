@@ -21,15 +21,15 @@ A real-time chat application built with FastAPI that supports JWT authentication
 | **Authentication** | JWT (via python-jose), OAuth2 |
 | **WebSocket**    | FastAPI WebSocket |
 | **Password Hashing** | passlib         |
-| **Admin UI**     | (Optional) SQLAdmin |
+
 
 ## ⚙️ Setup Instructions
 
 ### ✅ Prerequisites
 
 - Python 3.10+
-- PostgreSQL 14+
-- Redis *(optional)*
+- PostgreSQL 12
+
 
 ### 📥 Installation
 
@@ -58,6 +58,8 @@ cp  .env
 # Edit .env
 DATABASE_URL=postgresql://user:password@localhost:5432/chatdb
 SECRET_KEY=your-secret-key
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=60
 ```
 
 ## 🗃️ Database Setup
