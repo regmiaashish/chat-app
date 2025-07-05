@@ -8,7 +8,7 @@ from .database import Base, engine, get_db
 from .models import Message, User, Room
 from .schemas import MessageRead, WsMessage
 from .auth import decode_token, get_current_user
-
+from .routers import users, chat
 app = FastAPI()
 
 # Initialize database
@@ -18,15 +18,15 @@ Base.metadata.create_all(bind=engine)
 active_connections = {}
 
 # Include routers
-from .routers import users, chat
+
 
 app.include_router(users.router)
 app.include_router(chat.router)
 
 
 @app.get("/")
-def home():
-    return {"message": "FastAPI Chat is running"}
+def healthcheck():
+    return {"status":"active","websocket":"ready"}
 
 
 # WebSocket endpoint with full persistence
