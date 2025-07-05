@@ -1,7 +1,7 @@
-# These are the "schemas" for request and response data
-
 from pydantic import BaseModel
 from datetime import datetime
+from typing import Optional
+
 
 # --- USER ---
 class UserCreate(BaseModel):
@@ -9,32 +9,40 @@ class UserCreate(BaseModel):
     password: str
     role: str = "user"
 
+
 class UserRead(BaseModel):
     id: int
     username: str
     role: str
     is_active: bool
+
     class Config:
-        orm_mode = True
+        from_attributes = True  # Updated from orm_mode for Pydantic v2
+
 
 # --- TOKEN ---
 class Token(BaseModel):
     access_token: str
     token_type: str = "bearer"
 
+
 # --- ROOM ---
 class RoomCreate(BaseModel):
     name: str
-    description: str | None = None
+    description: Optional[str] = None
+
 
 class RoomRead(RoomCreate):
     id: int
+
     class Config:
-        orm_mode = True
+        from_attributes = True
+
 
 # --- MESSAGE ---
 class MessageCreate(BaseModel):
     content: str
+
 
 class MessageRead(BaseModel):
     id: int
@@ -42,5 +50,14 @@ class MessageRead(BaseModel):
     timestamp: datetime
     user_id: int
     room_id: int
+    username: str  # Added for sender info
+
     class Config:
-        orm_mode = True
+        from_attributes = True
+
+
+# --- WEB SOCKET ---
+class WsMessage(BaseModel):
+    content: str
+    sender: str
+    timestamp: str

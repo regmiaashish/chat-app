@@ -53,3 +53,7 @@ def admin_required(current_user: User = Depends(get_current_user)):
     if current_user.role != "admin":
         raise HTTPException(status_code=403, detail="Admins only")
     return current_user
+
+
+def decode_token():
+    return None
